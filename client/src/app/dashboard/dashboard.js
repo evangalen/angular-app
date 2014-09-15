@@ -1,4 +1,12 @@
-angular.module('dashboard', ['resources.projects', 'resources.tasks'])
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('dashboard', [
+  require('../../common/resources/projects').name,
+  require('../../common/resources/tasks').name
+])
 
 .config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/dashboard', {
@@ -17,15 +25,4 @@ angular.module('dashboard', ['resources.projects', 'resources.tasks'])
   });
 }])
 
-.controller('DashboardCtrl', ['$scope', '$location', 'projects', 'tasks', function ($scope, $location, projects, tasks) {
-  $scope.projects = projects;
-  $scope.tasks = tasks;
-
-  $scope.manageBacklog = function (projectId) {
-    $location.path('/projects/' + projectId + '/productbacklog');
-  };
-
-  $scope.manageSprints = function (projectId) {
-    $location.path('/projects/' + projectId + '/sprints');
-  };
-}]);
+.controller('DashboardCtrl', require('./dashboardCtrl'));

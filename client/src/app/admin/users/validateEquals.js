@@ -1,4 +1,9 @@
-angular.module('admin-users-edit-validateEquals', [])
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('admin-users-edit-validateEquals', [])
 
 /**
  * A validation directive to ensure that this model has the same value as some other

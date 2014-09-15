@@ -1,10 +1,15 @@
-angular.module('admin-users', [
-  'admin-users-list',
-  'admin-users-edit',
-  
-  'services.crud',
-  'security.authorization',
-  'directives.gravatar'
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('admin-users', [
+  require('./admin-users-list').name,
+  require('./admin-users-edit').name,
+
+  require('../../../common/services/crud').name,
+  require('../../../common/security/authorization').name,
+  require('../../../common/directives/gravatar').name
 ])
 
 .config(['crudRouteProvider', 'securityAuthorizationProvider', function (crudRouteProvider, securityAuthorizationProvider) {

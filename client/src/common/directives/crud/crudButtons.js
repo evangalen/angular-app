@@ -1,4 +1,9 @@
-angular.module('directives.crud.buttons', [])
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('directives.crud.buttons', [])
 
 .directive('crudButtons', function () {
   return {

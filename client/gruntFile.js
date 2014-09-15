@@ -9,12 +9,15 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-html2js');
+  grunt.loadNpmTasks('grunt-browserify');
 
   // Default task.
   grunt.registerTask('default', ['jshint','build','karma:unit']);
   grunt.registerTask('build', ['clean','html2js','concat','recess:build','copy:assets']);
   grunt.registerTask('release', ['clean','html2js','uglify','jshint','karma:unit','concat:index', 'recess:min','copy:assets']);
   grunt.registerTask('test-watch', ['karma:watch']);
+
+  grunt.registerTask('build-browserify', ['clean','browserify']);
 
   // Print a timestamp (useful for when watching)
   grunt.registerTask('timestamp', function() {
@@ -29,6 +32,14 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    browserify: {
+      js: {
+        // A single entry point for our app
+        src: 'src/app/app.js',
+        // Compile to a single file to add a script tag for in your HTML
+        dest: 'dist-browserify/app.js'
+      }
+    },
     distdir: 'dist',
     pkg: grunt.file.readJSON('package.json'),
     banner:

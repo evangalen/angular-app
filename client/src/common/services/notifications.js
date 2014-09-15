@@ -1,4 +1,10 @@
-angular.module('services.notifications', []).factory('notifications', ['$rootScope', function ($rootScope) {
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('services.notifications', [])
+.factory('notifications', ['$rootScope', function ($rootScope) {
 
   var notifications = {
     'STICKY' : [],

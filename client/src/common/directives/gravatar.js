@@ -1,4 +1,9 @@
-angular.module('directives.gravatar', [])
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('directives.gravatar', [])
 
 // A simple directive to display a gravatar image given an email
 .directive('gravatar', ['md5', function(md5) {
@@ -13,7 +18,7 @@ angular.module('directives.gravatar', [])
       defaultImage: '=',
       forceDefault: '='
     },
-    link: function(scope, element, attrs) {
+    link: function(scope) {
       scope.options = {};
       scope.$watch('email', function(email) {
         if ( email ) {
@@ -152,7 +157,6 @@ angular.module('directives.gravatar', [])
   }
 
   function md51(s) {
-    txt = '';
     var n = s.length,
       state = [1732584193, -271733879, -1732584194, 271733878],
       i;

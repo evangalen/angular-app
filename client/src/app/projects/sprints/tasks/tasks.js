@@ -1,4 +1,12 @@
-angular.module('tasks', ['resources.tasks', 'services.crud'])
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('tasks', [
+  require('../../../../common/resources/tasks').name,
+  require('../../../../common/services/crud').name
+])
 
 .config(['crudRouteProvider', function (crudRouteProvider) {
 
@@ -45,24 +53,6 @@ angular.module('tasks', ['resources.tasks', 'services.crud'])
   });
 }])
 
-.controller('TasksListCtrl', ['$scope', 'crudListMethods', '$route', 'tasks', function ($scope, crudListMethods, $route, tasks) {
-  $scope.tasks = tasks;
+.controller('TasksListCtrl', require('./tasksListCtrl'))
 
-  var projectId = $route.current.params.projectId;
-  var sprintId = $route.current.params.sprintId;
-  angular.extend($scope, crudListMethods('/projects/' + projectId + '/sprints/' + sprintId + '/tasks'));
-}])
-
-.controller('TasksEditCtrl', ['$scope', '$location', '$route', 'Tasks', 'sprintBacklogItems', 'teamMembers', 'task', function ($scope, $location, $route, Tasks, sprintBacklogItems, teamMembers, task) {
-  $scope.task = task;
-  $scope.statesEnum = Tasks.statesEnum;
-  $scope.sprintBacklogItems = sprintBacklogItems;
-  $scope.teamMembers = teamMembers;
-
-  $scope.onSave = function () {
-    $location.path('/admin/users');
-  };
-  $scope.onError = function() {
-    $scope.updateError = true;
-  };
-}]);
+.controller('TasksEditCtrl', require('./tasksEditCtrl'));

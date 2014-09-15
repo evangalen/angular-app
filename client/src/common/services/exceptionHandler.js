@@ -1,6 +1,10 @@
-angular.module('services.exceptionHandler', ['services.i18nNotifications']);
+'use strict';
 
-angular.module('services.exceptionHandler').factory('exceptionHandlerFactory', ['$injector', function($injector) {
+var angular = require('angular');
+
+
+module.exports = angular.module('services.exceptionHandler', [require('./i18nNotifications')])
+.factory('exceptionHandlerFactory', ['$injector', function($injector) {
   return function($delegate) {
 
     return function (exception, cause) {

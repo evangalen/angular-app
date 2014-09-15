@@ -1,4 +1,9 @@
-angular.module('directives.crud.edit', [])
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('directives.crud.edit', [])
 
 // Apply this directive to an element at or below a form that will manage CRUD operations on a resource.
 // - The resource must expose the following instance methods: $saveOrUpdate(), $id() and $remove()

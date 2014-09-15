@@ -1,8 +1,15 @@
+'use strict';
+
+var angular = require('angular');
+
+require('angular-ui-bootstrap');
+
+
 // Based loosely around work by Witold Szczerba - https://github.com/witoldsz/angular-http-auth
-angular.module('security.service', [
-  'security.retryQueue',    // Keeps track of failed requests that need to be retried once the user logs in
-  'security.login',         // Contains the login form template and controller
-  'ui.bootstrap.dialog'     // Used to display the login form as a modal dialog.
+module.exports = angular.module('security.service', [
+  require('./retryQueue').name,     // Keeps track of failed requests that need to be retried once the user logs in
+  require('./login/login').name,    // Contains the login form template and controller
+  'ui.bootstrap.dialog'             // Used to display the login form as a modal dialog.
 ])
 
 .factory('security', ['$http', '$q', '$location', 'securityRetryQueue', '$dialog', function($http, $q, $location, queue, $dialog) {
@@ -38,7 +45,7 @@ angular.module('security.service', [
   }
 
   // Register a handler for when an item is added to the retry queue
-  queue.onItemAddedCallbacks.push(function(retryItem) {
+  queue.onItemAddedCallbacks.push(function() {
     if ( queue.hasMore() ) {
       service.showLogin();
     }

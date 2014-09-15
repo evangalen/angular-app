@@ -1,1 +1,9 @@
-angular.module('security.login', ['security.login.form', 'security.login.toolbar']);
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('security.login', [
+  require('./LoginFormController').name,
+  require('./toolbar').name
+]);

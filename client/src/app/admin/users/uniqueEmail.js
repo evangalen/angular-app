@@ -1,4 +1,9 @@
-angular.module('admin-users-edit-uniqueEmail', ['resources.users'])
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('admin-users-edit-uniqueEmail', [require('../../../common/resources/users').name])
 
 /**
  * A validation directive to ensure that the model contains a unique email address

@@ -1,4 +1,9 @@
-angular.module('security.interceptor', ['security.retryQueue'])
+'use strict';
+
+var angular = require('angular');
+
+
+angular.module('security.interceptor', [require('./retryQueue').name])
 
 // This http interceptor listens for authentication failures
 .factory('securityInterceptor', ['$injector', 'securityRetryQueue', function($injector, queue) {

@@ -1,5 +1,13 @@
-angular.module('services.i18nNotifications', ['services.notifications', 'services.localizedMessages']);
-angular.module('services.i18nNotifications').factory('i18nNotifications', ['localizedMessages', 'notifications', function (localizedMessages, notifications) {
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('services.i18nNotifications', [
+  require('./notifications'),
+  require('./localizedMessages')
+])
+.factory('i18nNotifications', ['localizedMessages', 'notifications', function (localizedMessages, notifications) {
 
   var prepareNotification = function(msgKey, type, interpolateParams, otherProperties) {
      return angular.extend({
@@ -8,7 +16,8 @@ angular.module('services.i18nNotifications').factory('i18nNotifications', ['loca
      }, otherProperties);
   };
 
-  var I18nNotifications = {
+
+  return {
     pushSticky:function (msgKey, type, interpolateParams, otherProperties) {
       return notifications.pushSticky(prepareNotification(msgKey, type, interpolateParams, otherProperties));
     },
@@ -25,6 +34,4 @@ angular.module('services.i18nNotifications').factory('i18nNotifications', ['loca
       return notifications.remove(notification);
     }
   };
-
-  return I18nNotifications;
 }]);

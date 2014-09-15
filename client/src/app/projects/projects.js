@@ -1,4 +1,14 @@
-angular.module('projects', ['resources.projects', 'productbacklog', 'sprints', 'security.authorization'])
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('projects', [
+  require('../../common/resources/projects').name,
+  require('./productbacklog/productbacklog').name,
+  require('./sprints/sprints').name,
+  require('../../common/security/authorization').name
+])
 
 .config(['$routeProvider', 'securityAuthorizationProvider', function ($routeProvider, securityAuthorizationProvider) {
   $routeProvider.when('/projects', {
@@ -14,24 +24,4 @@ angular.module('projects', ['resources.projects', 'productbacklog', 'sprints', '
   });
 }])
 
-.controller('ProjectsViewCtrl', ['$scope', '$location', 'projects', 'security', function ($scope, $location, projects, security) {
-  $scope.projects = projects;
-
-  $scope.viewProject = function (project) {
-    $location.path('/projects/'+project.$id());
-  };
-
-  $scope.manageBacklog = function (project) {
-    $location.path('/projects/'+project.$id()+'/productbacklog');
-  };
-
-  $scope.manageSprints = function (project) {
-    $location.path('/projects/'+project.$id()+'/sprints');
-  };
-
-  $scope.getMyRoles = function(project) {
-    if ( security.currentUser ) {
-      return project.getRoles(security.currentUser.id);
-    }
-  };
-}]);
+.controller('ProjectsViewCtrl', require('./projectsViewCtrl'));

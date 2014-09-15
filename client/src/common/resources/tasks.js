@@ -1,5 +1,10 @@
-angular.module('resources.tasks', ['mongolabResource']);
-angular.module('resources.tasks').factory('Tasks', ['mongolabResource', function (mongolabResource) {
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('resources.tasks', [require('mongolab-resource').name])
+.factory('Tasks', ['mongolabResource', function (mongolabResource) {
 
   var Tasks = mongolabResource('tasks');
 

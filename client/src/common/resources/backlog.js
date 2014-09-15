@@ -1,5 +1,10 @@
-angular.module('resources.productbacklog', ['mongolabResource']);
-angular.module('resources.productbacklog').factory('ProductBacklog', ['mongolabResource', function (mongolabResource) {
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('resources.productbacklog', [require('mongolab-resource').name])
+.factory('ProductBacklog', ['mongolabResource', function (mongolabResource) {
   var ProductBacklog = mongolabResource('productbacklog');
 
   ProductBacklog.forProject = function (projectId) {

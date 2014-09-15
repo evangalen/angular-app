@@ -1,5 +1,10 @@
-angular.module('resources.users', ['mongolabResource']);
-angular.module('resources.users').factory('Users', ['mongolabResource', function (mongoResource) {
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('resources.users', [require('mongolab-resource').name])
+.factory('Users', ['mongolabResource', function (mongoResource) {
 
   var userResource = mongoResource('users');
   userResource.prototype.getFullName = function () {

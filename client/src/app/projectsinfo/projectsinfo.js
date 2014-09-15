@@ -1,4 +1,9 @@
-angular.module('projectsinfo', [], ['$routeProvider', function($routeProvider){
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('projectsinfo', [], ['$routeProvider', function($routeProvider){
 
   $routeProvider.when('/projectsinfo', {
     templateUrl:'projectsinfo/list.tpl.html',
@@ -11,6 +16,4 @@ angular.module('projectsinfo', [], ['$routeProvider', function($routeProvider){
   });
 }]);
 
-angular.module('projectsinfo').controller('ProjectsInfoListCtrl', ['$scope', 'projects', function($scope, projects){
-  $scope.projects = projects;
-}]);
+angular.module('projectsinfo').controller('ProjectsInfoListCtrl', require('./projectsInfoListCtrl'));

@@ -1,4 +1,13 @@
-angular.module('productbacklog', ['resources.productbacklog', 'services.crud'])
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports =
+  angular.module('productbacklog', [
+    require('../../../common/resources/backlog').name,
+    require('../../../common/services/crud').name
+  ])
 
   .config(['crudRouteProvider', function(crudRouteProvider){
   
@@ -36,33 +45,11 @@ angular.module('productbacklog', ['resources.productbacklog', 'services.crud'])
         }]
       });
   }])
-  
-  
-  
+
+
   // The controller for listing product backlog items
-  .controller('ProductBacklogListCtrl', ['$scope', 'crudListMethods', 'projectId', 'backlog', function($scope, crudListMethods, projectId, backlog){
-  
-    $scope.backlog = backlog;
-    
-    angular.extend($scope, crudListMethods('/projects/'+projectId+'/productbacklog'));
-  
-  }])
-  
-  
+  .controller('ProductBacklogListCtrl', require('./product-backlog-list-ctrl'))
+
   
   // The controller for editing a product backlog item
-  .controller('ProductBacklogEditCtrl', ['$scope', '$location', 'projectId', 'backlogItem', function($scope, $location, projectId, backlogItem){
-  
-    $scope.backlogItem = backlogItem;
-  
-    $scope.onSave = function () {
-      //TODO: missing message
-      $location.path('/projects/'+projectId+'/productbacklog');
-    };
-  
-    $scope.onError = function () {
-      //TODO: missing message
-      $scope.updateError = true;
-    };
-  
-  }]);
+  .controller('ProductBacklogEditCtrl', require('./product-backlog-edit-ctrl'));

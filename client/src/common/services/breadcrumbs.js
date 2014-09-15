@@ -1,12 +1,17 @@
-angular.module('services.breadcrumbs', []);
-angular.module('services.breadcrumbs').factory('breadcrumbs', ['$rootScope', '$location', function($rootScope, $location){
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('services.breadcrumbs', [])
+.factory('breadcrumbs', ['$rootScope', '$location', function($rootScope, $location){
 
   var breadcrumbs = [];
   var breadcrumbsService = {};
 
   //we want to update breadcrumbs only when a route is actually changed
   //as $location.path() will get updated imediatelly (even if route change fails!)
-  $rootScope.$on('$routeChangeSuccess', function(event, current){
+  $rootScope.$on('$routeChangeSuccess', function(){
 
     var pathElements = $location.path().split('/'), result = [], i;
     var breadcrumbPath = function (index) {

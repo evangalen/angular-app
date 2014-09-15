@@ -1,5 +1,10 @@
-angular.module('services.httpRequestTracker', []);
-angular.module('services.httpRequestTracker').factory('httpRequestTracker', ['$http', function($http){
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('services.httpRequestTracker', [])
+.factory('httpRequestTracker', ['$http', function($http){
 
   var httpRequestTracker = {};
   httpRequestTracker.hasPendingRequests = function() {

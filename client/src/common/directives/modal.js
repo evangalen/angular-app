@@ -1,4 +1,10 @@
-angular.module('directives.modal', []).directive('modal', ['$parse',function($parse) {
+'use strict';
+
+var angular = require('angular');
+
+
+module.exports = angular.module('directives.modal', [])
+.directive('modal', ['$parse',function($parse) {
   var backdropEl;
   var body = angular.element(document.getElementsByTagName('body')[0]);
   var defaultOpts = {
@@ -63,7 +69,7 @@ angular.module('directives.modal', []).directive('modal', ['$parse',function($pa
         body.addClass('modal-open');
       }
 
-      scope.$watch(shownExpr, function(isShown, oldShown) {
+      scope.$watch(shownExpr, function(isShown) {
         if (isShown) {
           open();
         } else {
