@@ -4,8 +4,8 @@ var angular = require('angular');
 
 
 module.exports = angular.module('services.i18nNotifications', [
-  require('./notifications'),
-  require('./localizedMessages')
+  require('./notifications').name,
+  require('./localizedMessages').name
 ])
 .factory('i18nNotifications', ['localizedMessages', 'notifications', function (localizedMessages, notifications) {
 

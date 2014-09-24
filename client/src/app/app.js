@@ -1,5 +1,7 @@
 'use strict';
 
+require('jquery');
+
 var angular = require('angular');
 
 
@@ -14,13 +16,13 @@ module.exports = angular.module('app', [
   require('../common/services/httpRequestTracker').name,
   require('../common/security/security').name,
   require('../common/directives/crud/crud').name,
-  'templates.app',
-  'templates.common'
+  require('./templates/app').name,
+  require('./templates/common').name
 ])
 
 .constant('MONGOLAB_CONFIG', {
   baseUrl: '/databases/',
-  dbName: 'ascrum'
+  dbName: 'angularapp'
 })
 
 //TODO: move those messages to a separate module

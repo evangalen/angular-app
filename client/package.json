@@ -37,7 +37,7 @@
     "angular": "./vendor/angular/angular-index.js",
     "angular-route": "./vendor/angular/angular-route-index.js",
     "angular-ui-bootstrap": "./vendor/angular-ui/bootstrap/ui-bootstrap-custom-0.1.0-SNAPSHOT.js",
-    "jquery": "./vendor/jquery/jquery.js",
-    "mongolab-resource": "./vendor/mongolab/mongolab-resource.js"
+    "jquery": "./vendor/jquery/jquery-index.js",
+    "mongolab-resource": "./vendor/mongolab/mongolab-resource-index.js"
   }
 }

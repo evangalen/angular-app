@@ -3,7 +3,7 @@
 var angular = require('angular');
 
 
-module.exports = angular.module('services.crud', [require('./crudRouteProvider')])
+module.exports = angular.module('services.crud', [require('./crudRouteProvider').name])
 .factory('crudEditMethods', function () {
 
   return function (itemName, item, formName, successcb, errorcb) {
